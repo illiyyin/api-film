@@ -9,9 +9,11 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-        movies : [{
-          Title: "iyin"
-        }]
+        movies : [
+          // {
+          // Title: "iyin"
+        // }
+      ]
     };
 }
 
@@ -36,14 +38,14 @@ componentDidMount() {
     })
     .then(response =>{
       this.setState({
-        movies:response.Search
+        movies:response.data.Search
       })
       
       // const porto = res.data;
       //   this.setState({ porto });
   //     const movies = response.movie;
   // this.setState({movies});
-      console.log(response)
+      console.log(response.data.Search)
     })
     .catch((error)=>{
       console.log(error)
@@ -77,16 +79,16 @@ componentDidMount() {
    return (
      <div className="App">
      
-     {/* {
-       this.state.movies.map((movie) => {
-         return (
-           <Movie {...movie}/>)
-      })
-    } */}
+     
        <header className="App-header" >
        <Search handleSendRequest={this.sendRequest}/>
        
-       
+       {
+       this.state.movies.map(movie => {
+         return <Movie {...movie}/>
+           
+      })
+      }
        </header>
        {/* {this.state.movies.map((movie,idx)=>{
        return (
